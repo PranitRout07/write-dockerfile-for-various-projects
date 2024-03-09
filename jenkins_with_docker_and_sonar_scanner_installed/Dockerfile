@@ -1,14 +1,9 @@
-FROM jenkins/jenkins:latest
+FROM jenkins/jenkins:lts
 
 USER root
 
 # install docker
-RUN apt-get update && \
-    apt-get install -y apt-transport-https ca-certificates curl software-properties-common && \
-    curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
-    add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/debian bookworm stable' && \
-    apt-get update && \
-    apt-get install -y docker-ce
+RUN curl -sSL https://get.docker.com/ | sh
 
 # install sonarQube scanner
 RUN apt-get install -y unzip && \
